@@ -1,0 +1,548 @@
+fileFormatVersion: 2
+guid: c04388418a3281749b81f08fc51ac122
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -717031622665919665
+    second: sprite_eren_1
+  - first:
+      213: 3033735092370061660
+    second: sprite_eren_2
+  - first:
+      213: -365324976598669447
+    second: sprite_eren_3
+  - first:
+      213: -125754932376844387
+    second: sprite_eren_5
+  - first:
+      213: -6502077251505956445
+    second: sprite_eren_6
+  - first:
+      213: -8063475079723647073
+    second: sprite_eren_7
+  - first:
+      213: -599541467767155101
+    second: sprite_eren_8
+  - first:
+      213: 7350295886209337235
+    second: sprite_eren_9
+  - first:
+      213: -2216578895084252931
+    second: sprite_eren_11
+  - first:
+      213: -193149655060931896
+    second: sprite_eren_12
+  - first:
+      213: 7060455633271128177
+    second: sprite_eren_13
+  - first:
+      213: -5434413028110242192
+    second: sprite_eren_14
+  - first:
+      213: 7157262869456123291
+    second: sprite_eren_15
+  - first:
+      213: -1024286090117788534
+    second: sprite_eren_17
+  - first:
+      213: -8471820593017978679
+    second: sprite_eren_18
+  - first:
+      213: -3311576468635049057
+    second: sprite_eren_19
+  - first:
+      213: -6778802395247983871
+    second: sprite_eren_20
+  - first:
+      213: -7917733769587639815
+    second: sprite_eren_21
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sprite_eren_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 323
+        width: 100
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f43a646c9879c06f0800000000000000
+      internalID: -717031622665919665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_2
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 325
+        width: 96
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c59ba5b3efdf91a20800000000000000
+      internalID: 3033735092370061660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_3
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 326
+        width: 80
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 977224e8eda1eeaf0800000000000000
+      internalID: -365324976598669447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_5
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 326
+        width: 68
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d97cce62e8a314ef0800000000000000
+      internalID: -125754932376844387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_6
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 233
+        width: 82
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a9d6d1703bf3c5a0800000000000000
+      internalID: -6502077251505956445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_7
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 241
+        width: 75
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9f7bd91328c81090800000000000000
+      internalID: -8063475079723647073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_8
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 244
+        width: 85
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3665f9926300ea7f0800000000000000
+      internalID: -599541467767155101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_9
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 248
+        width: 103
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 397c58b3a2f710660800000000000000
+      internalID: 7350295886209337235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_11
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 138
+        width: 94
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df010e52d312d31e0800000000000000
+      internalID: -2216578895084252931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_12
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 138
+        width: 94
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ca9a9d796bc15df0800000000000000
+      internalID: -193149655060931896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_13
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 138
+        width: 95
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17008859df6cbf160800000000000000
+      internalID: 7060455633271128177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_14
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 133
+        width: 94
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07eebb8c4261594b0800000000000000
+      internalID: -5434413028110242192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_15
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 131
+        width: 97
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b957602b8a4b35360800000000000000
+      internalID: 7157262869456123291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_17
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 59
+        width: 100
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8cc72a5a3109c1f0800000000000000
+      internalID: -1024286090117788534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_18
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 50
+        width: 87
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c003586e0c0e6a80800000000000000
+      internalID: -8471820593017978679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_19
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 50
+        width: 95
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f93277c4fbaea02d0800000000000000
+      internalID: -3311576468635049057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_20
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 43
+        width: 94
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1034dac132bdce1a0800000000000000
+      internalID: -6778802395247983871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_eren_21
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 42
+        width: 100
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f93d95261f8e1290800000000000000
+      internalID: -7917733769587639815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
