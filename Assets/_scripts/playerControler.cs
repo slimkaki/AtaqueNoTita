@@ -6,7 +6,10 @@ public class playerControler : MonoBehaviour
 {
     // GameManager gm;
     private float positionX, positionY;
-    private bool jumpFlag = false;
+    public float speed;
+    public float jumpVelocity;
+    public Rigidbody2D rb;
+    private float lastHorizontal = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,27 +19,37 @@ public class playerControler : MonoBehaviour
         
     }
 
+    void Jump() {
+        rb.AddForce(Vector2.up*jumpVelocity, ForceMode2D.Impulse);
+        
+    }
 
     // Update is called once per frame
     void Update()
-    {
-        if (jumpFlag) {
-            positionY += 0.01f;
-        }                
-        if (Input.GetKey(KeyCode.LeftArrow)) {
-            positionX -= 0.01f;
-        }
-        if (Input.GetKey(KeyCode.RightArrow)) {
-            positionX += 0.01f;
-        }
-        if (Input.GetAxisRaw("Jump") != 0){
-            jumpFlag = true;
+    {         
+        if (Input.GetAxisRaw("Jump") != 0) {
+            Jump();
         }
         
-        
-        
-
-        this.transform.position = new Vector3(positionX, positionY, this.transform.position.z);
+        float h = Input.GetAxisRaw("Horizontal");
+        float horizontal = h * speed * Time.deltaTime;
+        if ((lastHorizontal == 1.0f && h == -1.0f) || (lastHorizontal == -1.0f && h == 1.0f)) {
+            this.transform.Rotate(this.transform.rotation.x, -180f, this.transform.rotation.z);
+        } 
+        this.transform.position = new Vector3(this.transform.position.x + horizontal, this.transform.position.y, this.transform.position.z);
+        if (h != 0.0f && lastHorizontal != h) {
+            lastHorizontal = h;
+        }
     }
+
+  
+    // }
+
+    // void OnTriggerEnter2D(Collider2D collision) {
+    //     if (collision.CompareTag("roofTop")) {// && !jumpFlag) {
+    //         jumpFlag = false;
+    //     }
+    // }
     
 }
+
