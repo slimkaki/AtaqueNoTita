@@ -13,7 +13,7 @@ public class playerControler : MonoBehaviour
     public bool isGrounded = false;
     private bool isOnAir = false;
     Animator animator;
-    
+    public AudioClip shootSFX;
     private bool canKillTitan = false;
     // Start is called before the first frame update
     void Start() 
@@ -88,6 +88,7 @@ public class playerControler : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q) && canKillTitan) {
             Debug.Log("Kills titan");
+            audioManeger.PlaySFX(shootSFX);
             SearchAndDestroy();
             gm.pontos+=20;
             Impulse();
