@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonReminder : MonoBehaviour
+public class UI_ButtonReminder : MonoBehaviour
 {
    Text textComp;
    GameManager gm;
@@ -13,8 +13,12 @@ public class ButtonReminder : MonoBehaviour
        gm = GameManager.GetInstance();
    }
    
-   void Update()
+    void Update()
    {
-       textComp.text = $"Aperte Q para matar o Titã";
-   }
+        if (gm.pressQ) {
+            textComp.text = $"Aperte Q para matar o Titã";
+        } else {
+            textComp.text = "";
+        }
+    }
 }
