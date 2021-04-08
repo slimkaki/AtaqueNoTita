@@ -2,60 +2,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// public class GameManager 
-// {
-//    private static GameManager _instance;
-//    public enum GameState { MENU, GAME, PAUSE, ENDGAME };
+public class GameManager 
+{
+   private static GameManager _instance;
+   public enum GameState { MENU, GAME, PAUSE, ENDGAME };
 
-//    public GameState gameState { get; private set; }
-//    public int vidas;
-//    public int pontos;
-//    public int time;
-//    public  Vector3 position;
-//    public int nivelArma;
-//    public static GameManager GetInstance()
-//    {
-//        if(_instance == null)
-//        {
-//            _instance = new GameManager();
-//        }
+   public GameState gameState { get; private set; }
+   public int vidas;
+   public int pontos;
+   public int time;
+   public  Vector3 position;
 
-//        return _instance;
-//    }
-//    private GameManager()
-//    {
-//        vidas = 10;
-//        pontos = 0;
-//        time = 6000;
-//        nivelArma = 0;
+   public static GameManager GetInstance()
+   {
+       if(_instance == null)
+       {
+           _instance = new GameManager();
+       }
 
-//        position = new Vector3(-5.25f,-4.0f,0);
-//        gameState = GameState.MENU;
-//    }
-//     public delegate void ChangeStateDelegate();
+       return _instance;
+   }
+   private GameManager()
+   {
+       vidas = 10;
+       pontos = 0;
+       time = 6000;
+       position = new Vector3(0.0f,-1.4f,0.0f);
+       gameState = GameState.MENU;
+   }
+    public delegate void ChangeStateDelegate();
 
-//     public static ChangeStateDelegate changeStateDelegate;
+    public static ChangeStateDelegate changeStateDelegate;
 
-//     public void ChangeState(GameState nextState)
-//     {
+    public void ChangeState(GameState nextState)
+    {
 
-//        if (nextState == GameState.MENU) Reset();
+       if (nextState == GameState.MENU) Reset();
         
-//         if(gameState == GameState.PAUSE && nextState == GameState.MENU){
-//             GameObject.FindWithTag("Player").transform.position = position;
-//         }
+        if(gameState == GameState.PAUSE && nextState == GameState.MENU){
+            GameObject.FindWithTag("Player").transform.position = position;
+            
+        }
+        if(gameState == GameState.ENDGAME && nextState == GameState.MENU){
+            GameObject.FindWithTag("Player").transform.position = position;
+            
+        }
         
-//         gameState = nextState;
+        gameState = nextState;
         
-//         changeStateDelegate();
+        changeStateDelegate();
         
-//     }
+    }
 
-//     private void Reset()
-//     {
-//     vidas = 10;
-//     pontos = 0;
-//     time = 6000;
-//     nivelArma = 0;
-//     }
-// }
+    private void Reset()
+    {
+    vidas = 10;
+    pontos = 0;
+    time = 6000;
+    
+    }
+}
