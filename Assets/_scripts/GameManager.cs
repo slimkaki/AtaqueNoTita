@@ -11,7 +11,8 @@ public class GameManager
    public int vidas;
    public int pontos;
    public int time;
-   public  Vector3 position;
+   public Vector3 position;
+   public bool pressQ = false;
 
    public static GameManager GetInstance()
    {

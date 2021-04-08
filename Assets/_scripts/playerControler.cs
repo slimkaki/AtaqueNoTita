@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerControler : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class playerControler : MonoBehaviour
     Animator animator;
     public AudioClip shootSFX;
     private bool canKillTitan = false;
+
+
     // Start is called before the first frame update
     void Start() 
     {   
@@ -57,19 +60,20 @@ public class playerControler : MonoBehaviour
         // Fonte do código: https://forum.unity.com/threads/find-and-delete-closest-gameobject-with-tag-solved.419205/
         // Search for the nearest titan and destroy it
         GameObject[] actual_titans = GameObject.FindGameObjectsWithTag("Titan");
-        float curDist = 10;
+        float curDist = 1000000;
         GameObject titanToKill = null;
  
         foreach (GameObject titan in actual_titans) {
             float dist = Vector3.Distance(transform.position, titan.transform.position);
-            if (dist > curDist) {
+            if (dist < curDist) {
                 curDist = dist;
                 titanToKill = titan;
             }
         }
         if (titanToKill != null) {
-             Destroy(titanToKill);
+            Destroy(titanToKill);
         }
+        canKillTitan = false;
     }
 
     // Update is called once per frame
@@ -87,11 +91,16 @@ public class playerControler : MonoBehaviour
         } 
 
         if (Input.GetKey(KeyCode.Q) && canKillTitan) {
-            Debug.Log("Kills titan");
             audioManeger.PlaySFX(shootSFX);
             SearchAndDestroy();
             gm.pontos+=20;
             Impulse();
+        }
+
+        if (canKillTitan) {
+            gm.pressQ = true;
+        } else {
+            gm.pressQ = false;
         }
 
         if (Input.GetAxisRaw("Jump") > 0f && isOnAir) {

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class UI_MenuPrincipal : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class UI_MenuPrincipal : MonoBehaviour
  
   public void Comecar()
   {
+      Debug.Log("Comecei!");
       gm.ChangeState(GameManager.GameState.GAME);
       sR.enabled = true; 
       Eren.transform.position = gm.position;

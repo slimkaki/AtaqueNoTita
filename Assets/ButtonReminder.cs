@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_Vidas : MonoBehaviour
+public class ButtonReminder : MonoBehaviour
 {
    Text textComp;
    GameManager gm;
@@ -15,6 +15,6 @@ public class UI_Vidas : MonoBehaviour
    
    void Update()
    {
-    //    textComp.text = $"Vidas: {gm.vidas}";
+       textComp.text = $"Aperte Q para matar o Titã";
    }
 }
