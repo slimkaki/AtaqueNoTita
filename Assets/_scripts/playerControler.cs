@@ -143,9 +143,15 @@ public class playerControler : MonoBehaviour
         gm.ChangeState(GameManager.GameState.ENDGAME);
         Die();
     }
+    
+        if(gm.vidas <= 0){
+        if(gm.gameState == GameManager.GameState.GAME)
+        {
+            gm.ChangeState(GameManager.GameState.ENDGAME);
+            Die();
+        }
     }
-  
-
+    }
    void OnCollisionEnter2D(Collision2D collision) {        
         if (collision.gameObject.tag == "roofTop" || collision.gameObject.tag == "titanBack" || collision.gameObject.tag == "titanFront")
             this.isGrounded = true;
@@ -154,7 +160,8 @@ public class playerControler : MonoBehaviour
         if (collision.gameObject.tag == "Torre") {
             gm.ChangeState(GameManager.GameState.ENDGAME);
         }
-
+        if (collision.gameObject.tag == "titanMouth")
+            gm.vidas--;
     } 
  
     void OnCollisionExit2D(Collision2D collision) {
@@ -162,8 +169,7 @@ public class playerControler : MonoBehaviour
             this.isGrounded = false;
         if (collision.gameObject.tag == "titanBack")
             this.canKillTitan = false;
-        if (collision.gameObject.tag == "titanMouth")
-            gm.vidas--;
+        
 
         // if (collision.gameObject.tag == "titanFront")
         //     TakeDamage(20);

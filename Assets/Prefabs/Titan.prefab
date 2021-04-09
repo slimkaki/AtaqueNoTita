@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 405745937436384111}
   m_Layer: 0
   m_Name: boca
-  m_TagString: Untagged
+  m_TagString: titanMouth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
