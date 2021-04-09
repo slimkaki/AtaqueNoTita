@@ -25,11 +25,11 @@ public class GameManager
    }
    private GameManager()
    {
-       vidas = 10;
-       pontos = 0;
-       time = 6000;
-       position = new Vector3(0.0f,-1.4f,0.0f);
-       gameState = GameState.MENU;
+        vidas = 10;
+        pontos = 0;
+        time = 6000;
+        position = new Vector3(0.0f,-1.4f,0.0f);
+        gameState = GameState.MENU; 
    }
     public delegate void ChangeStateDelegate();
 
@@ -60,6 +60,5 @@ public class GameManager
     vidas = 10;
     pontos = 0;
     time = 6000;
-    
     }
 }

@@ -71,7 +71,9 @@ public class playerControler : MonoBehaviour
             }
         }
         if (titanToKill != null) {
-            Destroy(titanToKill);
+            // Destroy(titanToKill);
+            titanToKill.GetComponent<TitanController>().Die();
+            // titanToKill.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         }
         canKillTitan = false;
     }
@@ -93,7 +95,7 @@ public class playerControler : MonoBehaviour
         if (Input.GetKey(KeyCode.Q) && canKillTitan) {
             audioManeger.PlaySFX(shootSFX);
             SearchAndDestroy();
-            gm.pontos+=20;
+            gm.pontos+=1;
             Impulse();
         }
 
@@ -149,7 +151,9 @@ public class playerControler : MonoBehaviour
             this.isGrounded = true;
         if (collision.gameObject.tag == "titanBack")
             this.canKillTitan = true;
-        
+        if (collision.gameObject.tag == "Torre") {
+            gm.ChangeState(GameManager.GameState.ENDGAME);
+        }
 
     } 
  

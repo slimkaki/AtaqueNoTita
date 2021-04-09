@@ -11,18 +11,23 @@ public class UI_FimDeJogo : MonoBehaviour
        gm = GameManager.GetInstance();
 
        
-       if(gm.time <= 0 && gm.pontos >= 40){
-           message.text = $"Missão completa!! \n   Pontuação: {gm.pontos}";
+       if(gm.pontos >= 2){
+           message.text = $"Missão completa!!\nAbates: {gm.pontos}";
+         
+       }else{
+           if(gm.vidas == 0) {
+               message.text = $"Missão incompleta!!\nVocê morreu!\nAbates: {gm.pontos}";
+           } else {
+                message.text = $"Missão incompleta!!\nAbates: {gm.pontos}";
+           }
          
        }
-       else if(gm.time <= 0)
+
+       if(gm.time <= 0)
        {
            message.text = "Missão fracassada!!!";
        }
-       else
-       {
-           message.text = "Você morreu!!";
-       }
+       
    }
    public void Voltar()
 {

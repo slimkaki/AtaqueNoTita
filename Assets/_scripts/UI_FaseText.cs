@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_Pontos : MonoBehaviour
-{
+public class UI_FaseText : MonoBehaviour {
    Text textComp;
    GameManager gm;
-   void Start()
-   {
+   void Start() {
        textComp = GetComponent<Text>();
        gm = GameManager.GetInstance();
    }
    
-   void Update()
-   {
-       textComp.text = $"Abates: {gm.pontos}";
+   void Update() {
+       textComp.text = $"Missão: Abata os titãs e chegue até a base";
    }
 }

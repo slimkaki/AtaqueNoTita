@@ -9,6 +9,8 @@ TagManager:
   - Titan
   - titanFront
   - titanBack
+  - Torre
+  - TitanSpawner
   layers:
   - Default
   - TransparentFX
