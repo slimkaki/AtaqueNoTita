@@ -162,6 +162,8 @@ public class playerControler : MonoBehaviour
             this.isGrounded = false;
         if (collision.gameObject.tag == "titanBack")
             this.canKillTitan = false;
+        if (collision.gameObject.tag == "titanMouth")
+            gm.vidas--;
 
         // if (collision.gameObject.tag == "titanFront")
         //     TakeDamage(20);
