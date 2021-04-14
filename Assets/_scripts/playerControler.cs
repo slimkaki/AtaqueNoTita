@@ -7,14 +7,13 @@ public class playerControler : MonoBehaviour
 {
     GameManager gm;
     private float positionX, positionY;
-    public float speed;
-    public float jumpVelocity;
+    public float speed, jumpVelocity;
     private Rigidbody2D rb;
     private float lastHorizontal = 1.0f;
     public bool isGrounded = false;
     private bool isOnAir = false;
     Animator animator;
-    public AudioClip shootSFX;
+    public AudioClip shootSFX, swordSwoosh; 
     private bool canKillTitan = false;
 
 
@@ -59,11 +58,21 @@ public class playerControler : MonoBehaviour
     void SearchAndDestroy() {
         // Fonte do código: https://forum.unity.com/threads/find-and-delete-closest-gameobject-with-tag-solved.419205/
         // Search for the nearest titan and destroy it
-        GameObject[] actual_titans = GameObject.FindGameObjectsWithTag("Titan");
-        float curDist = 1000000;
+        List<GameObject> final_titans = new List<GameObject>();
+
+        GameObject[] actual_titans = GameObject.FindGameObjectsWithTag("Titan") ;
+        GameObject[] actual_titans_2 = GameObject.FindGameObjectsWithTag("GenericTitan");
+        foreach(GameObject berthold in actual_titans) {
+            final_titans.Add(berthold);
+        }
+        foreach(GameObject generic in actual_titans_2) {
+            final_titans.Add(generic);
+        }
+
+        float curDist = 1000000; 
         GameObject titanToKill = null;
  
-        foreach (GameObject titan in actual_titans) {
+        foreach (GameObject titan in final_titans) {
             float dist = Vector3.Distance(transform.position, titan.transform.position);
             if (dist < curDist) {
                 curDist = dist;
@@ -71,9 +80,7 @@ public class playerControler : MonoBehaviour
             }
         }
         if (titanToKill != null) {
-            // Destroy(titanToKill);
             titanToKill.GetComponent<TitanController>().Die();
-            // titanToKill.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         }
         canKillTitan = false;
     }
@@ -84,19 +91,31 @@ public class playerControler : MonoBehaviour
         if(gm.gameState != GameManager.GameState.GAME) return;
         if (this.transform.position.y < -6.0f) {
             // Debug.Log($"Die -> position.y = {this.transform.position.y}");
-           TakeDamage(100);
-           
+            gm.vidas = 0;
+            gm.ChangeState(GameManager.GameState.ENDGAME);
+           //TakeDamage(100);
         }
 
         if (Input.GetAxisRaw("Vertical") > 0f && isGrounded) {
             Jump();
         } 
 
-        if (Input.GetKey(KeyCode.Q) && canKillTitan) {
-            audioManeger.PlaySFX(shootSFX);
-            SearchAndDestroy();
-            gm.pontos+=1;
-            Impulse();
+        if (Input.GetKey(KeyCode.Q)) {
+            // TODO:
+            // Fazer animacao de ataque
+            animator.SetTrigger("atk");
+            if (canKillTitan){
+                audioManeger.PlaySFX(shootSFX);
+                SearchAndDestroy();
+                gm.pontos+=1;
+                Impulse();
+            } else {
+                
+                audioManeger.PlaySFX(swordSwoosh);
+                // TODO:
+                // Colocar animação de ataque
+            }
+            
         }
 
         if (canKillTitan) {
@@ -158,10 +177,12 @@ public class playerControler : MonoBehaviour
         if (collision.gameObject.tag == "titanBack")
             this.canKillTitan = true;
         if (collision.gameObject.tag == "Torre") {
+            
             gm.ChangeState(GameManager.GameState.ENDGAME);
         }
         if (collision.gameObject.tag == "titanMouth")
-            gm.vidas--;
+            gm.vidas=0;
+            // gm.ChangeState(GameManager.GameState.ENDGAME);
     } 
  
     void OnCollisionExit2D(Collision2D collision) {

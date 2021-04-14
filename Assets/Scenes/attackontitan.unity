@@ -408,8 +408,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221407709}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.53, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.451, y: -2.315, z: -0.9632883}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -450,6 +450,7 @@ MonoBehaviour:
   jumpVelocity: 1
   isGrounded: 1
   shootSFX: {fileID: 8300000, guid: 95bc1808b882df842891831f5377046e, type: 3}
+  swordSwoosh: {fileID: 8300000, guid: c5623f7e207bf59499b096b9204555ab, type: 3}
 --- !u!61 &221407714
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -463,7 +464,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13525873, y: 0}
+  m_Offset: {x: -0.13525873, y: -0.0042791218}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -474,7 +475,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7294824, y: 0.79}
+  m_Size: {x: 0.7294824, y: 0.79855824}
   m_EdgeRadius: 0
 --- !u!50 &221407715
 Rigidbody2D:
@@ -29037,6 +29038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TitanPrefab: {fileID: 4532725971950127508, guid: c373a4c0c7d6a416b83b2258c5e0256d,
     type: 3}
+  GenericPrefab: {fileID: 4760561705375031569, guid: 6a169bae69e8afd4389228ae70f35058,
+    type: 3}
 --- !u!4 &803967809
 Transform:
   m_ObjectHideFlags: 0
@@ -29953,7 +29956,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330072763}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.451, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

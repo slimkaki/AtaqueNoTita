@@ -7,6 +7,7 @@ public class TitanController : MonoBehaviour {
     private bool isDying = false;
     private float tempoDaMorte;
     private float x, y, z;
+
     void Start() {
         
     }

@@ -10,23 +10,26 @@ public class UI_FimDeJogo : MonoBehaviour
    {
        gm = GameManager.GetInstance();
 
-       
-       if(gm.pontos >= 2){
-           message.text = $"Missão completa!!\nAbates: {gm.pontos}";
-         
-       }else{
-           if(gm.vidas == 0) {
-               message.text = $"Missão incompleta!!\nVocê morreu!\nAbates: {gm.pontos}";
-           } else {
-                message.text = $"Missão incompleta!!\nAbates: {gm.pontos}";
-           }
-         
-       }
-
-       if(gm.time <= 0)
-       {
-           message.text = "Missão fracassada!!!";
-       }
+       if(gm.vidas <= 0) {
+           Debug.Log("gm.vidas == 0");
+            if(gm.pontos>0){
+                message.text = $"Você morreu, mas a humanidade lembrará dos seus feitos!\nAbates: {gm.pontos}";
+            }else{
+                message.text = $"Você morreu, missão fracassada!!!";
+            }
+            
+       } else if (gm.time <= 0) {
+            message.text = "Missão fracassada!!!\nO seu gás acabou!";
+        } else {
+            if(gm.pontos >= 2){
+                message.text = $"Missão completa!!\nAbates: {gm.pontos}";
+                
+            }else{
+                Debug.Log("missão incompleta");
+                    message.text = $"Missão incompleta!!\nAbates: {gm.pontos}";
+                
+            }
+        }
        
    }
    public void Voltar()

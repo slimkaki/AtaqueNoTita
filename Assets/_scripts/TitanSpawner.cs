@@ -5,17 +5,30 @@ using UnityEngine;
 public class TitanSpawner : MonoBehaviour {
 
     GameManager gm;
-    List<Vector3> titanPos = new List<Vector3>(); 
+    List<Vector3> titanPos = new List<Vector3>();
+    List<Vector3> genericPos = new List<Vector3>();
     public GameObject TitanPrefab;
+    public GameObject GenericPrefab;
     void Start() {
         gm = GameManager.GetInstance();
         
-        titanPos.Add(new Vector3(16.34f, -2.61f, -10f));
+        genericPos.Add(new Vector3(15.34f, -2.61f, 0f));
         titanPos.Add(new Vector3(63.81f, -3.34f, -10f));
-        Spawn();
+        SpawnGeneric();
+        SpawnSuperTitan();
     }
 
-    public void Spawn() {
+    public void SpawnGeneric() {
+        GameObject[] actual_titans = GameObject.FindGameObjectsWithTag("GenericTitan");
+        foreach (GameObject titan in actual_titans) {
+            Destroy(titan);
+        }
+
+        foreach(Vector3 titan in genericPos) {
+            Instantiate(GenericPrefab, titan, Quaternion.identity);
+        }
+    }
+    public void SpawnSuperTitan() {
         GameObject[] actual_titans = GameObject.FindGameObjectsWithTag("Titan");
         foreach (GameObject titan in actual_titans) {
             Destroy(titan);
@@ -28,7 +41,8 @@ public class TitanSpawner : MonoBehaviour {
     void Update() {
         
         if (gm.gameState == GameManager.GameState.MENU){
-            Spawn();
+            SpawnGeneric();
+            SpawnSuperTitan();
         }
        
     }

@@ -12,6 +12,7 @@ TagManager:
   - Torre
   - TitanSpawner
   - titanMouth
+  - GenericTitan
   layers:
   - Default
   - TransparentFX
