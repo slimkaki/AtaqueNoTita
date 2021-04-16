@@ -13,6 +13,8 @@ public class GameManager
    public int time;
    public Vector3 position;
    public bool pressQ = false;
+   public bool trapped = false;
+   public bool titanAtk = false;
 
    public static GameManager GetInstance()
    {

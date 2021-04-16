@@ -102,25 +102,25 @@ public class playerControler : MonoBehaviour
         } 
         // ataque apenas duas vezes por segundo -> https://www.youtube.com/watch?v=sPiVz1k-fEs
         if(Time.time >=nextAttackTime){
-        if (Input.GetKey(KeyCode.Q)) {
-            // TODO:
-            // Fazer animacao de ataque
-            nextAttackTime = Time.time + 1.0f / attackRate;
-            animator.SetTrigger("atk");
-            if (canKillTitan){
-                audioManeger.PlaySFX(shootSFX);
-                SearchAndDestroy();
-                gm.pontos+=1;
-                Impulse();
-            } else {
-                
-                audioManeger.PlaySFX(swordSwoosh);
+            if (Input.GetKey(KeyCode.Q)) {
                 // TODO:
-                // Colocar animação de ataque
+                // Fazer animacao de ataque
+                nextAttackTime = Time.time + 1.0f / attackRate;
+                animator.SetTrigger("atk");
+                if (canKillTitan){
+                    audioManeger.PlaySFX(shootSFX);
+                    SearchAndDestroy();
+                    gm.pontos+=1;
+                    Impulse();
+                } else {
+                    
+                    audioManeger.PlaySFX(swordSwoosh);
+                    // TODO:
+                    // Colocar animação de ataque
+                }
+                
             }
-            
-        }
-           
+
         }
         if (canKillTitan) {
             gm.pressQ = true;
@@ -180,12 +180,16 @@ public class playerControler : MonoBehaviour
             this.isGrounded = true;
         if (collision.gameObject.tag == "titanBack")
             this.canKillTitan = true;
-        if (collision.gameObject.tag == "Torre") {
-            
+        if (collision.gameObject.tag == "Torre") 
             gm.ChangeState(GameManager.GameState.ENDGAME);
-        }
         if (collision.gameObject.tag == "titanMouth")
             gm.vidas=0;
+        if (collision.gameObject.tag == "TitanHand" && gm.titanAtk){
+            gm.trapped = true;
+            gm.vidas-=4;
+            rb.velocity = new Vector2(-160, 16 );
+            gm.titanAtk = false;
+        }
             // gm.ChangeState(GameManager.GameState.ENDGAME);
     } 
  
