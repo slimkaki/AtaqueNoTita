@@ -16,7 +16,8 @@ public class playerControler : MonoBehaviour
     public AudioClip shootSFX, swordSwoosh; 
     private bool canKillTitan = false;
 
-
+    public float attackRate= 4f;
+    float nextAttackTime = 0f;
     // Start is called before the first frame update
     void Start() 
     {   
@@ -99,10 +100,12 @@ public class playerControler : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") > 0f && isGrounded) {
             Jump();
         } 
-
+        // ataque apenas duas vezes por segundo -> https://www.youtube.com/watch?v=sPiVz1k-fEs
+        if(Time.time >=nextAttackTime){
         if (Input.GetKey(KeyCode.Q)) {
             // TODO:
             // Fazer animacao de ataque
+            nextAttackTime = Time.time + 1.0f / attackRate;
             animator.SetTrigger("atk");
             if (canKillTitan){
                 audioManeger.PlaySFX(shootSFX);
@@ -117,7 +120,8 @@ public class playerControler : MonoBehaviour
             }
             
         }
-
+           
+        }
         if (canKillTitan) {
             gm.pressQ = true;
         } else {
