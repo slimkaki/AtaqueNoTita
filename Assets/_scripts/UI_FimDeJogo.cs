@@ -18,9 +18,7 @@ public class UI_FimDeJogo : MonoBehaviour
                 message.text = $"Você morreu, missão fracassada!!!";
             }
             
-       } else if (gm.time <= 0) {
-            message.text = "Missão fracassada!!!\nO seu gás acabou!";
-        } else {
+       }  else {
             if(gm.pontos >= 2){
                 message.text = $"Missão completa!!\nAbates: {gm.pontos}";
                 

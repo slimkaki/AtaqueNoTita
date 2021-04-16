@@ -16,19 +16,19 @@ public class timer : MonoBehaviour
     }
 	public void SetMaxTime()
 	{
-		slider.maxValue = gm.time;
-		slider.value = gm.time;
+		slider.maxValue = gm.gas;
+		slider.value = gm.gas;
 
 	}
 
-    public void SetTime(int time)
+    public void Setgas(int gas)
 	{
-		slider.value = time;
+		slider.value = gas;
 
 	}
 	public void Update(){
 
-		SetTime(gm.time);
+		Setgas(gm.gas);
 
 	}
 

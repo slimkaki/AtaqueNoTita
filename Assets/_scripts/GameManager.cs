@@ -10,7 +10,7 @@ public class GameManager
    public GameState gameState { get; private set; }
    public int vidas;
    public int pontos;
-   public int time;
+   public int gas, tanque_de_gas;
    public Vector3 position;
    public bool pressQ = false;
    public bool trapped = false;
@@ -29,7 +29,8 @@ public class GameManager
    {
         vidas = 10;
         pontos = 0;
-        time = 6000;
+        gas = 100;
+        tanque_de_gas = 4;
         position = new Vector3(0.0f,-1.4f,0.0f);
         gameState = GameState.MENU; 
    }
@@ -61,6 +62,7 @@ public class GameManager
     {
     vidas = 10;
     pontos = 0;
-    time = 6000;
+    gas = 100;
+    tanque_de_gas = 4;
     }
 }

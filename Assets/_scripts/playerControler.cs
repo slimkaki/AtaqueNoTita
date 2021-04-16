@@ -18,6 +18,7 @@ public class playerControler : MonoBehaviour
 
     public float attackRate= 4f;
     float nextAttackTime = 0f;
+    float lastGasReload = 0f;
     // Start is called before the first frame update
     void Start() 
     {   
@@ -101,7 +102,7 @@ public class playerControler : MonoBehaviour
             Jump();
         } 
         // ataque apenas duas vezes por segundo -> https://www.youtube.com/watch?v=sPiVz1k-fEs
-        if(Time.time >=nextAttackTime){
+        if(Time.time >= nextAttackTime){
             if (Input.GetKey(KeyCode.Q)) {
                 // TODO:
                 // Fazer animacao de ataque
@@ -122,14 +123,27 @@ public class playerControler : MonoBehaviour
             }
 
         }
+
+        if ((Time.time - lastGasReload >= 2f) && (Input.GetKey(KeyCode.R))) {
+            if (gm.tanque_de_gas < 0 && gm.gameState == GameManager.GameState.GAME) {
+                gm.ChangeState(GameManager.GameState.ENDGAME);
+                Die();
+            } else {
+                gm.tanque_de_gas--;
+                gm.gas = 100;
+                lastGasReload = Time.time;
+            }
+        }
+
         if (canKillTitan) {
             gm.pressQ = true;
         } else {
             gm.pressQ = false;
         }
 
-        if (Input.GetAxisRaw("Jump") > 0f && isOnAir) {
+        if (Input.GetAxisRaw("Jump") > 0f && isOnAir && gm.gas >= 10) {
             Impulse();
+            gm.gas -= 10;
         } 
           
         float h = Input.GetAxisRaw("Horizontal");
@@ -140,7 +154,8 @@ public class playerControler : MonoBehaviour
         }
 
         this.transform.position = new Vector3(this.transform.position.x + horizontal, this.transform.position.y, this.transform.position.z);
-        if (h != 0.0f && lastHorizontal != h) {
+        if (h != 0.0f && lastHorizontal != h) 
+        {
             lastHorizontal = h;
         }
 
@@ -156,24 +171,19 @@ public class playerControler : MonoBehaviour
 
         
 
-        if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME) {
-       gm.ChangeState(GameManager.GameState.PAUSE);
-   }
-        gm.time--;
-        if(gm.time <= 0 && gm.gameState == GameManager.GameState.GAME)
+        if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME)
         {
-
-        gm.ChangeState(GameManager.GameState.ENDGAME);
-        Die();
-    }
+            gm.ChangeState(GameManager.GameState.PAUSE);
+        }
+        
     
         if(gm.vidas <= 0){
-        if(gm.gameState == GameManager.GameState.GAME)
-        {
-            gm.ChangeState(GameManager.GameState.ENDGAME);
-            Die();
+            if(gm.gameState == GameManager.GameState.GAME)
+            {
+                gm.ChangeState(GameManager.GameState.ENDGAME);
+                Die();
+            }
         }
-    }
     }
    void OnCollisionEnter2D(Collision2D collision) {        
         if (collision.gameObject.tag == "roofTop" || collision.gameObject.tag == "titanBack" || collision.gameObject.tag == "titanFront")
