@@ -13,14 +13,15 @@ public class playerControler : MonoBehaviour
     public bool isGrounded = false;
     private bool isOnAir = false;
     Animator animator;
-    public AudioClip shootSFX, swordSwoosh; 
+    public AudioClip shootSFX, swordSwoosh,gasSFX; 
     private bool canKillTitan = false;
-
+    public GameObject floatingDamage;
     public float attackRate= 4f;
     float nextAttackTime = 0f;
     float lastGasReload = 0f;
     Vector2 velocitySave = new Vector2(0, 0);
-    // Start is called before the first frame update
+    private AudioSource gas_sfx;
+    
     void Start() 
     {   
         gm = GameManager.GetInstance();
@@ -28,6 +29,7 @@ public class playerControler : MonoBehaviour
         positionX = this.transform.position.x;
         positionY = this.transform.position.y;
         animator = GetComponent<Animator>();
+        gas_sfx = GetComponent<AudioSource>();
     }
 
     void Jump() {
@@ -37,6 +39,7 @@ public class playerControler : MonoBehaviour
     }
     void Impulse() {
         // rb.AddForce(Vector2.up*jumpVelocity, ForceMode2D.Impulse);
+        gas_sfx.Play();
         rb.velocity = new Vector2(rb.velocity.x*9, 16 );
         isOnAir = false;
     }
@@ -128,21 +131,37 @@ public class playerControler : MonoBehaviour
 
     void FixedUpdate() {         
         if(gm.gameState != GameManager.GameState.GAME) return;
+
+        // Tutorial
         if  (gm.firstPlay[0]) {
+            // Tutorial incial: teclas e comandos disponíveis
             PauseErenPhysics();
             gm.ChangeState(GameManager.GameState.TUTORIAL);
             gm.firstPlay[0] = false;
         }
-        if (this.transform.position.y < -6.0f) {
-            // Debug.Log($"Die -> position.y = {this.transform.position.y}");
-            gm.vidas = 0;
-            gm.ChangeState(GameManager.GameState.ENDGAME);
-           //TakeDamage(100);
+        if (gm.firstPlay[2]) {
+            // Tutorial: avisa como matar titãs
+            if (IsTitanOnScreen()) {
+                PauseErenPhysics();
+                gm.ChangeState(GameManager.GameState.TUTORIAL);
+                gm.firstPlay[2] = false;
+                return;
+            }
+        }
+        if (gm.gas <= 0 && gm.firstPlay[1]) {
+            // Tutorial: Avisa como recarrega o gás
+            PauseErenPhysics();
+            gm.ChangeState(GameManager.GameState.TUTORIAL);
+            gm.firstPlay[1] = false;
+            return;
         }
 
-        if (Input.GetAxisRaw("Vertical") > 0f && isGrounded) {
-            Jump();
-        } 
+        // Checa altitude do eren para ver se ele deveria morrer
+        if (this.transform.position.y < -6.0f) {
+            gm.vidas = 0;
+            gm.ChangeState(GameManager.GameState.ENDGAME);
+        }
+
         // ataque apenas duas vezes por segundo -> https://www.youtube.com/watch?v=sPiVz1k-fEs
         if(Time.time >= nextAttackTime){
             if (Input.GetKey(KeyCode.Q)) {
@@ -161,29 +180,16 @@ public class playerControler : MonoBehaviour
 
         }
 
-        if (gm.firstPlay[2]) {
-            if (IsTitanOnScreen()) {
-                PauseErenPhysics();
-                gm.ChangeState(GameManager.GameState.TUTORIAL);
-                gm.firstPlay[2] = false;
-            }
-        }
+        // Caso do pulo básico ou salto do personagem
+        if (Input.GetAxisRaw("Vertical") > 0f && isGrounded) {
+            Jump();
+            isGrounded = false;
+        } 
 
-        if (gm.gas <= 0 && gm.firstPlay[1]) {
-            PauseErenPhysics();
-            gm.ChangeState(GameManager.GameState.TUTORIAL);
-            gm.firstPlay[1] = false;
-        }
-
-        if ((Time.time - lastGasReload >= 2f) && (Input.GetKey(KeyCode.R))) {
-            // if (gm.tanque_de_gas < 0 && gm.gameState == GameManager.GameState.GAME) {
-            //     gm.ChangeState(GameManager.GameState.ENDGAME);
-            //     Die();
-            // } else {
+        if ((Time.time - lastGasReload >= 5f) && (Input.GetKey(KeyCode.R))) {
             gm.tanque_de_gas--;
             gm.gas = 100;
             lastGasReload = Time.time;
-            // }
         }
 
         if (canKillTitan) {
@@ -205,8 +211,7 @@ public class playerControler : MonoBehaviour
         }
 
         this.transform.position = new Vector3(this.transform.position.x + horizontal, this.transform.position.y, this.transform.position.z);
-        if (h != 0.0f && lastHorizontal != h) 
-        {
+        if (h != 0.0f && lastHorizontal != h) {
             lastHorizontal = h;
         }
 
@@ -246,6 +251,7 @@ public class playerControler : MonoBehaviour
         if (collision.gameObject.tag == "titanMouth")
             gm.vidas=0;
         if (collision.gameObject.tag == "TitanHand" && gm.titanAtk){
+            Instantiate(floatingDamage, new Vector3(this.transform.position.x + 0.5f, this.transform.position.y+2f, this.transform.position.z), Quaternion.identity);
             gm.trapped = true;
             gm.vidas-=4;
             rb.velocity = new Vector2(-160, 16 );

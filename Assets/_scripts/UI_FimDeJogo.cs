@@ -23,8 +23,7 @@ public class UI_FimDeJogo : MonoBehaviour
                 message.text = $"Missão completa!!\nAbates: {gm.pontos}";
                 
             }else{
-                Debug.Log("missão incompleta");
-                    message.text = $"Missão incompleta!!\nAbates: {gm.pontos}";
+                message.text = $"Missão incompleta!!\nAbates: {gm.pontos}";
                 
             }
         }

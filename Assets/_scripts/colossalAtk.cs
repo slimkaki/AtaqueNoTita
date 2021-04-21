@@ -79,7 +79,4 @@ public class colossalAtk : MonoBehaviour
 
     }
    
-    void sleep(){
-        // this.transform.position = originalPos;        
-    }
 }
