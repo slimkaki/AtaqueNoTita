@@ -13,6 +13,7 @@ TagManager:
   - TitanSpawner
   - titanMouth
   - GenericTitan
+  - TitanHand
   layers:
   - Default
   - TransparentFX

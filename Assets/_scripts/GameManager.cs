@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager 
 {
    private static GameManager _instance;
-   public enum GameState { MENU, GAME, PAUSE, ENDGAME };
+   public enum GameState { MENU, GAME, PAUSE, TUTORIAL, ENDGAME };
 
    public GameState gameState { get; private set; }
    public int vidas;
@@ -15,6 +15,7 @@ public class GameManager
    public bool pressQ = false;
    public bool trapped = false;
    public bool titanAtk = false;
+   public bool[] firstPlay = {true, true, true}; // pos[0] -> inicio game; pos[1] -> reload do gas; pos[2] -> matar tita
 
    public static GameManager GetInstance()
    {

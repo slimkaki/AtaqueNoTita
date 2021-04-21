@@ -57,6 +57,9 @@ public class colossalAtk : MonoBehaviour
     // Função retirada de uma questão presente no fórum da unity 
     // https://answers.unity.com/questions/1592029/how-do-you-make-enemies-rotate-to-your-position-in.html
     private void RotateTowards(Vector2 target) {
+        if (target.x > this.transform.position.x) {
+            return;
+        }
         var offset = 0f;
         Vector2 direction = target - (Vector2)transform.position;
         direction.Normalize();

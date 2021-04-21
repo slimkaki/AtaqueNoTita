@@ -57,6 +57,34 @@ public class playerControler : MonoBehaviour
     private void Die(){
         GetComponent<SpriteRenderer>().enabled = false;
     }
+
+    bool IsTitanOnScreen() {
+        List<GameObject> final_titans = new List<GameObject>();
+
+        GameObject[] actual_titans = GameObject.FindGameObjectsWithTag("Titan") ;
+        GameObject[] actual_titans_2 = GameObject.FindGameObjectsWithTag("GenericTitan");
+        foreach(GameObject berthold in actual_titans) {
+            final_titans.Add(berthold);
+        }
+        foreach(GameObject generic in actual_titans_2) {
+            final_titans.Add(generic);
+        }
+
+        float curDist = 1000000; 
+        GameObject titanToKill = null;
+ 
+        foreach (GameObject titan in final_titans) {
+            float dist = Vector3.Distance(transform.position, titan.transform.position);
+            if (dist < curDist) {
+                curDist = dist;
+                titanToKill = titan;
+            }
+        }
+        if (titanToKill.transform.position.x - this.transform.position.x <= 5f) {
+            return true;
+        }
+        return false;
+    }
     void SearchAndDestroy() {
         // Fonte do código: https://forum.unity.com/threads/find-and-delete-closest-gameobject-with-tag-solved.419205/
         // Search for the nearest titan and destroy it
@@ -124,15 +152,27 @@ public class playerControler : MonoBehaviour
 
         }
 
-        if ((Time.time - lastGasReload >= 2f) && (Input.GetKey(KeyCode.R))) {
-            if (gm.tanque_de_gas < 0 && gm.gameState == GameManager.GameState.GAME) {
-                gm.ChangeState(GameManager.GameState.ENDGAME);
-                Die();
-            } else {
-                gm.tanque_de_gas--;
-                gm.gas = 100;
-                lastGasReload = Time.time;
+        if (gm.firstPlay[2]) {
+            if (IsTitanOnScreen()) {
+                gm.ChangeState(GameManager.GameState.TUTORIAL);
+                gm.firstPlay[2] = false;
             }
+        }
+
+        if (gm.gas <= 0 && gm.firstPlay[1]) {
+            gm.ChangeState(GameManager.GameState.TUTORIAL);
+            gm.firstPlay[1] = false;
+        }
+
+        if ((Time.time - lastGasReload >= 2f) && (Input.GetKey(KeyCode.R))) {
+            // if (gm.tanque_de_gas < 0 && gm.gameState == GameManager.GameState.GAME) {
+            //     gm.ChangeState(GameManager.GameState.ENDGAME);
+            //     Die();
+            // } else {
+            gm.tanque_de_gas--;
+            gm.gas = 100;
+            lastGasReload = Time.time;
+            // }
         }
 
         if (canKillTitan) {
