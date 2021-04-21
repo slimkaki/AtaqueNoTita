@@ -19,7 +19,7 @@ public class TitanController : MonoBehaviour {
         z = this.transform.position.z;
         tempoDaMorte = Time.time;
         Quaternion smokeRotation = Quaternion.Euler(-90, 0, 0);
-        Instantiate(fumaca, new Vector3(this.transform.position.x, this.transform.position.y - 3f, this.transform.position.z), smokeRotation);
+        Instantiate(fumaca, new Vector3(this.transform.position.x, this.transform.position.y - 3f, 0), smokeRotation);
 
     }
 
