@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TitanController : MonoBehaviour {
-    public Collider2D collider;
     private bool isDying = false;
     private float tempoDaMorte;
     private float x, y, z;
+    public GameObject fumaca;
 
     void Start() {
         
@@ -18,6 +18,9 @@ public class TitanController : MonoBehaviour {
         y = this.transform.position.y;
         z = this.transform.position.z;
         tempoDaMorte = Time.time;
+        Quaternion smokeRotation = Quaternion.Euler(-90, 0, 0);
+        Instantiate(fumaca, new Vector3(this.transform.position.x, this.transform.position.y - 3f, this.transform.position.z), smokeRotation);
+
     }
 
  

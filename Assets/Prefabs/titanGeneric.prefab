@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 0}
+  fumaca: {fileID: 3197705821474589576, guid: 3f9f3ffb9045f41e3858953dca05a330, type: 3}
 --- !u!1 &6225631291769020284
 GameObject:
   m_ObjectHideFlags: 0

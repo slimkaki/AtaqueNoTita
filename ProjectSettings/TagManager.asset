@@ -15,6 +15,7 @@ TagManager:
   - GenericTitan
   - TitanHand
   - ControlesImage
+  - Fumaca
   layers:
   - Default
   - TransparentFX

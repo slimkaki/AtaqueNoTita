@@ -21,7 +21,7 @@ public class playerControler : MonoBehaviour
     float lastGasReload = 0f;
     Vector2 velocitySave = new Vector2(0, 0);
     private AudioSource gas_sfx;
-    
+
     void Start() 
     {   
         gm = GameManager.GetInstance();
@@ -117,6 +117,13 @@ public class playerControler : MonoBehaviour
             titanToKill.GetComponent<TitanController>().Die();
         }
         canKillTitan = false;
+    }
+
+    public void DestroySmoke() {
+        GameObject[] smokes = GameObject.FindGameObjectsWithTag("Fumaca");
+        foreach(GameObject smoke in smokes) {
+            Destroy(smoke);
+        }
     }
 
     void PauseErenPhysics() {

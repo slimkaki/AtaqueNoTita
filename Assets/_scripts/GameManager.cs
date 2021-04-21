@@ -59,11 +59,11 @@ public class GameManager
         
     }
 
-    private void Reset()
-    {
-    vidas = 10;
-    pontos = 0;
-    gas = 100;
-    tanque_de_gas = 4;
+    private void Reset() {
+        vidas = 10;
+        pontos = 0;
+        gas = 100;
+        tanque_de_gas = 4;
+        GameObject.FindWithTag("Player").GetComponent<playerControler>().DestroySmoke();
     }
 }
