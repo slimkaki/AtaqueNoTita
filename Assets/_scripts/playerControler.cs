@@ -19,6 +19,7 @@ public class playerControler : MonoBehaviour
     public float attackRate= 4f;
     float nextAttackTime = 0f;
     float lastGasReload = 0f;
+    Vector2 velocitySave = new Vector2(0, 0);
     // Start is called before the first frame update
     void Start() 
     {   
@@ -115,10 +116,23 @@ public class playerControler : MonoBehaviour
         canKillTitan = false;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {         
+    void PauseErenPhysics() {
+        rb.gravityScale = 0;
+        velocitySave = rb.velocity;
+        rb.velocity = new Vector2(0, 0);
+    }
+    public void UnpauseErenPhysics() {
+        rb.gravityScale = 4;
+        rb.velocity = velocitySave;
+    }
+
+    void FixedUpdate() {         
         if(gm.gameState != GameManager.GameState.GAME) return;
+        if  (gm.firstPlay[0]) {
+            PauseErenPhysics();
+            gm.ChangeState(GameManager.GameState.TUTORIAL);
+            gm.firstPlay[0] = false;
+        }
         if (this.transform.position.y < -6.0f) {
             // Debug.Log($"Die -> position.y = {this.transform.position.y}");
             gm.vidas = 0;
@@ -132,8 +146,6 @@ public class playerControler : MonoBehaviour
         // ataque apenas duas vezes por segundo -> https://www.youtube.com/watch?v=sPiVz1k-fEs
         if(Time.time >= nextAttackTime){
             if (Input.GetKey(KeyCode.Q)) {
-                // TODO:
-                // Fazer animacao de ataque
                 nextAttackTime = Time.time + 1.0f / attackRate;
                 animator.SetTrigger("atk");
                 if (canKillTitan){
@@ -142,10 +154,7 @@ public class playerControler : MonoBehaviour
                     gm.pontos+=1;
                     Impulse();
                 } else {
-                    
                     audioManeger.PlaySFX(swordSwoosh);
-                    // TODO:
-                    // Colocar animação de ataque
                 }
                 
             }
@@ -154,12 +163,14 @@ public class playerControler : MonoBehaviour
 
         if (gm.firstPlay[2]) {
             if (IsTitanOnScreen()) {
+                PauseErenPhysics();
                 gm.ChangeState(GameManager.GameState.TUTORIAL);
                 gm.firstPlay[2] = false;
             }
         }
 
         if (gm.gas <= 0 && gm.firstPlay[1]) {
+            PauseErenPhysics();
             gm.ChangeState(GameManager.GameState.TUTORIAL);
             gm.firstPlay[1] = false;
         }
