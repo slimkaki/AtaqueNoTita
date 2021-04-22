@@ -13,6 +13,7 @@ public class TitanSpawner : MonoBehaviour {
         gm = GameManager.GetInstance();
         
         genericPos.Add(new Vector3(15.34f, -2.61f, 0f));
+        genericPos.Add(new Vector3(62.8f, -3.24f, 0f)); //2
         genericPos.Add(new Vector3(45.48f, -3.24f, 0f)); //2
         genericPos.Add(new Vector3(153.92f, -2.68f, 0f));
         genericPos.Add(new Vector3(178.79f, -3.12f, 0f));
