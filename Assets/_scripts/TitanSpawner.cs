@@ -13,7 +13,13 @@ public class TitanSpawner : MonoBehaviour {
         gm = GameManager.GetInstance();
         
         genericPos.Add(new Vector3(15.34f, -2.61f, 0f));
-        titanPos.Add(new Vector3(63.81f, -3.34f, -10f));
+        genericPos.Add(new Vector3(45.48f, -3.24f, 0f)); //2
+        genericPos.Add(new Vector3(153.92f, -2.68f, 0f));
+        genericPos.Add(new Vector3(178.79f, -3.12f, 0f));
+        genericPos.Add(new Vector3(200.66f, -3.12f, 0f));
+        genericPos.Add(new Vector3(254.76f, -3.12f, 0f));
+        titanPos.Add(new Vector3(287.83f, -2.31f, -10f));
+        titanPos.Add(new Vector3(359.33f, -0.58f, -10f));
         SpawnGeneric();
         SpawnSuperTitan();
     }
@@ -48,3 +54,4 @@ public class TitanSpawner : MonoBehaviour {
     }
 
 }
+// 
