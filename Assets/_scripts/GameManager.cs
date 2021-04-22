@@ -16,7 +16,7 @@ public class GameManager
    public bool trapped = false;
    public bool titanAtk = false;
    public bool[] firstPlay = {true, true, true}; // pos[0] -> inicio game; pos[1] -> reload do gas; pos[2] -> matar tita
-
+   public int TotalTitans = 2;
    public static GameManager GetInstance()
    {
        if(_instance == null)
@@ -65,5 +65,6 @@ public class GameManager
         gas = 100;
         tanque_de_gas = 4;
         GameObject.FindWithTag("Player").GetComponent<playerControler>().DestroySmoke();
+        GameObject.FindWithTag("Player").GetComponent<BoxCollider2D>().enabled = true;
     }
 }

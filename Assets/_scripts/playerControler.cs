@@ -59,6 +59,7 @@ public class playerControler : MonoBehaviour
     }       
     }
     private void Die(){
+        GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
     }
 
@@ -134,6 +135,17 @@ public class playerControler : MonoBehaviour
     public void UnpauseErenPhysics() {
         rb.gravityScale = 4;
         rb.velocity = velocitySave;
+    }
+
+    void Update() {
+        if(gm.gameState != GameManager.GameState.GAME) return;
+        if(gm.vidas <= 0){
+            if(gm.gameState == GameManager.GameState.GAME) {
+                Die();
+                gm.ChangeState(GameManager.GameState.ENDGAME);
+                
+            }
+        } 
     }
 
     void FixedUpdate() {         
@@ -243,8 +255,9 @@ public class playerControler : MonoBehaviour
         if(gm.vidas <= 0){
             if(gm.gameState == GameManager.GameState.GAME)
             {
-                gm.ChangeState(GameManager.GameState.ENDGAME);
                 Die();
+                gm.ChangeState(GameManager.GameState.ENDGAME);
+                
             }
         }
     }
@@ -264,7 +277,6 @@ public class playerControler : MonoBehaviour
             rb.velocity = new Vector2(-160, 16 );
             gm.titanAtk = false;
         }
-            // gm.ChangeState(GameManager.GameState.ENDGAME);
     } 
  
     void OnCollisionExit2D(Collision2D collision) {
@@ -272,10 +284,6 @@ public class playerControler : MonoBehaviour
             this.isGrounded = false;
         if (collision.gameObject.tag == "titanBack")
             this.canKillTitan = false;
-        
-
-        // if (collision.gameObject.tag == "titanFront")
-        //     TakeDamage(20);
     }
     
 }

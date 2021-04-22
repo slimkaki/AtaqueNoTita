@@ -11,18 +11,17 @@ public class UI_FimDeJogo : MonoBehaviour
        gm = GameManager.GetInstance();
 
        if(gm.vidas <= 0) {
-           Debug.Log("gm.vidas == 0");
+        //    Debug.Log("gm.vidas == 0");
             if(gm.pontos>0){
                 message.text = $"Você morreu, mas a humanidade lembrará dos seus feitos!\nAbates: {gm.pontos}";
             }else{
                 message.text = $"Você morreu, missão fracassada!!!";
             }
             
-       }  else {
-            if(gm.pontos >= 2){
+       } else {
+            if(gm.pontos/gm.TotalTitans >= 0.75f){
                 message.text = $"Missão completa!!\nAbates: {gm.pontos}";
-                
-            }else{
+            } else {
                 message.text = $"Missão incompleta!!\nAbates: {gm.pontos}";
                 
             }

@@ -7,9 +7,16 @@ public class TitanController : MonoBehaviour {
     private float tempoDaMorte;
     private float x, y, z;
     public GameObject fumaca;
+    private float canIWalk, mySpeed;
+    private GameObject eren;
+
+    GameManager gm;
 
     void Start() {
-        
+        gm =  GameManager.GetInstance();
+        canIWalk = Random.Range(0.0f, 1.0f);
+        mySpeed = Random.Range(0.01f, 0.1f);
+        eren = GameObject.FindWithTag("Player");
     }
 
     public void Die() {
@@ -35,4 +42,18 @@ public class TitanController : MonoBehaviour {
         }
         
     }
+    
+    void FixedUpdate() {
+        if(gm.gameState != GameManager.GameState.GAME) return;
+        if (canIWalk > 0.4f) { 
+            TitanWalk();
+        }
+    }
+
+    void TitanWalk() {
+        
+        if (this.transform.position.x - eren.transform.position.x < 9f && this.transform.position.x - eren.transform.position.x >= 1f) {
+            this.transform.position = new Vector3(this.transform.position.x-mySpeed, this.transform.position.y, this.transform.position.z);
+        }
+    } 
 }

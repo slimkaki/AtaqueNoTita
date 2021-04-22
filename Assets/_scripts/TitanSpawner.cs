@@ -21,6 +21,7 @@ public class TitanSpawner : MonoBehaviour {
         genericPos.Add(new Vector3(254.76f, -3.12f, 0f));
         titanPos.Add(new Vector3(287.83f, -2.31f, -10f));
         titanPos.Add(new Vector3(359.33f, -0.58f, -10f));
+        gm.TotalTitans = genericPos.Count + titanPos.Count;
         SpawnGeneric();
         SpawnSuperTitan();
     }

@@ -22,6 +22,7 @@ public class colossalAtk : MonoBehaviour
     }
 
     void Update() {
+        if(gm.gameState != GameManager.GameState.GAME) return;
         if (GameObject.FindWithTag("Player").transform.position.x - 0.5f > this.transform.position.x) {
             return;
         }
