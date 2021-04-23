@@ -14,7 +14,7 @@ public class HangeController : MonoBehaviour{
     [SerializeField]
     public Text message;
   
-    void OnEnable()  {
+    void OnEnable() {
         gm = GameManager.GetInstance();
         controles = GameObject.FindWithTag("ControlesImage");
         controles.GetComponent<Image>().enabled = false;
@@ -24,6 +24,7 @@ public class HangeController : MonoBehaviour{
             message.text = $"Missão: Abata todos os titãs e chegue até a base!";
         } else if (gm.gas <= 0 && gm.firstPlay[1]) {
             message.text = $"O seu gás acabou! Para recarregar, aperte a tecla R!!!";
+            gm.firstPlay[1] = false;
         } else if (gm.firstPlay[2]) {
             message.text = $"Você acabou de encontrar seu primeiro titã! Para matá-lo, basta chegar em sua nuca e apertar a tecla Q!";
         }
@@ -31,7 +32,8 @@ public class HangeController : MonoBehaviour{
     }
 
     public void BackToGame() {
-        controles.GetComponent<Image>().enabled = false;
+        if (controles.GetComponent<Image>().enabled) 
+            controles.GetComponent<Image>().enabled = false;
         // Unpause
         eren = GameObject.FindWithTag("Player");
         eren.GetComponent<playerControler>().UnpauseErenPhysics();

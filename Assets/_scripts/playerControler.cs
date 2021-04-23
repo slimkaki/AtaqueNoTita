@@ -13,7 +13,7 @@ public class playerControler : MonoBehaviour
     public bool isGrounded = false;
     private bool isOnAir = false;
     Animator animator;
-    public AudioClip shootSFX, swordSwoosh,gasSFX; 
+    public AudioClip shootSFX, swordSwoosh, mikasa_scream; 
     private bool canKillTitan = false;
     public GameObject floatingDamage;
     public float attackRate= 4f;
@@ -22,8 +22,7 @@ public class playerControler : MonoBehaviour
     Vector2 velocitySave = new Vector2(0, 0);
     private AudioSource gas_sfx;
 
-    void Start() 
-    {   
+    void Start() {   
         gm = GameManager.GetInstance();
         rb = GetComponent<Rigidbody2D>();
         positionX = this.transform.position.x;
@@ -145,19 +144,16 @@ public class playerControler : MonoBehaviour
                 gm.ChangeState(GameManager.GameState.ENDGAME);
                 
             }
-        } 
-    }
-
-    void FixedUpdate() {         
-        if(gm.gameState != GameManager.GameState.GAME) return;
-
+        }
         // Tutorial
         if  (gm.firstPlay[0]) {
-            // Tutorial incial: teclas e comandos disponíveis
+            // Tutorial inicial: teclas e comandos disponíveis
             PauseErenPhysics();
             gm.ChangeState(GameManager.GameState.TUTORIAL);
             gm.firstPlay[0] = false;
+            return;
         }
+
         if (gm.firstPlay[2]) {
             // Tutorial: avisa como matar titãs
             if (IsTitanOnScreen()) {
@@ -175,6 +171,11 @@ public class playerControler : MonoBehaviour
             return;
         }
 
+    }
+
+    void FixedUpdate() {         
+        if(gm.gameState != GameManager.GameState.GAME) return;
+        
         // Checa altitude do eren para ver se ele deveria morrer
         if (this.transform.position.y < -6.0f) {
             gm.vidas = 0;
@@ -266,8 +267,10 @@ public class playerControler : MonoBehaviour
             this.isGrounded = true;
         if (collision.gameObject.tag == "titanBack")
             this.canKillTitan = true;
-        if (collision.gameObject.tag == "Torre") 
+        if (collision.gameObject.tag == "Torre") {
+            audioManeger.PlaySFX(mikasa_scream);
             gm.ChangeState(GameManager.GameState.ENDGAME);
+        }
         if (collision.gameObject.tag == "titanMouth")
             gm.vidas=0;
         if (collision.gameObject.tag == "TitanHand" && gm.titanAtk){
