@@ -29,33 +29,30 @@ public class playerControler : MonoBehaviour
         positionY = this.transform.position.y;
         animator = GetComponent<Animator>();
         gas_sfx = GetComponent<AudioSource>();
+        UnpauseErenPhysics();
     }
 
     void Jump() {
-        // rb.AddForce(Vector2.up*jumpVelocity, ForceMode2D.Impulse);
         rb.velocity = new Vector2(rb.velocity.x, 10);
         isOnAir = true;
     }
     void Impulse() {
-        // rb.AddForce(Vector2.up*jumpVelocity, ForceMode2D.Impulse);
         gas_sfx.Play();
         rb.velocity = new Vector2(rb.velocity.x*9, 16 );
         isOnAir = false;
     }
-     public void TakeDamage(int dano)
-    {
-       if(gm.vidas >= dano){
-            gm.vidas-=dano;
-       }else{
-           gm.vidas = 0;
-       }
-       if (gm.vidas <= 0){
-          Die();
-        };
-       if(gm.vidas <= 0 && gm.gameState == GameManager.GameState.GAME)
-    {
-        gm.ChangeState(GameManager.GameState.ENDGAME);
-    }       
+     public void TakeDamage(int dano) {
+        if(gm.vidas >= dano){
+                gm.vidas-=dano;
+        } else {
+            gm.vidas = 0;
+        }
+        if (gm.vidas <= 0) {
+            Die();
+            };
+        if(gm.vidas <= 0 && gm.gameState == GameManager.GameState.GAME) {
+            gm.ChangeState(GameManager.GameState.ENDGAME);
+        }       
     }
     private void Die(){
         GetComponent<BoxCollider2D>().enabled = false;
@@ -171,6 +168,11 @@ public class playerControler : MonoBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME) {
+            PauseErenPhysics();
+            gm.ChangeState(GameManager.GameState.PAUSE);
+        }
+
     }
 
     void FixedUpdate() {         
@@ -247,14 +249,6 @@ public class playerControler : MonoBehaviour
        {
            animator.SetFloat("velocity", 0.0f);
        }
-
-        
-
-        if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME)
-        {
-            gm.ChangeState(GameManager.GameState.PAUSE);
-        }
-        
     
         if(gm.vidas <= 0){
             if(gm.gameState == GameManager.GameState.GAME)
@@ -278,7 +272,7 @@ public class playerControler : MonoBehaviour
             for (int i = 0; i < 5; i++){
                 Instantiate(bloodObject, transform.position, Quaternion.identity);
             }
-            gm.vidas=0;
+            gm.vidas = 0;
         }
         if (collision.gameObject.tag == "TitanHand" && gm.titanAtk){
             Instantiate(floatingDamage, new Vector3(this.transform.position.x + 0.5f, this.transform.position.y+2f, this.transform.position.z), Quaternion.identity);
@@ -286,7 +280,7 @@ public class playerControler : MonoBehaviour
                 Instantiate(bloodObject, transform.position, Quaternion.identity);
             }
             gm.trapped = true;
-            gm.vidas-=4;
+            gm.vidas -= 4;
             rb.velocity = new Vector2(-160, 16 );
             gm.titanAtk = false;
         }

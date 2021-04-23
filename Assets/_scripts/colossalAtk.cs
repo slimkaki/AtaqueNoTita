@@ -39,16 +39,13 @@ public class colossalAtk : MonoBehaviour
                 attack(GameObject.FindWithTag("Player").transform.position);
                 atkTime = Time.time;
             }
-        }
-        if (Time.time - atkTime > 0.1f  && attacking) {
+        } else if (Time.time - atkTime > 0.1f  && attacking) {
             attacking = false;
             backBool = true;
             rb.velocity = new Vector2(0,0);
             backAttack(GameObject.FindWithTag("Player").transform.position);
             backTime = Time.time;
-        }
-
-        if (Time.time - backTime > 0.1f && backBool) {
+        } else if (Time.time - backTime > 0.1f && backBool) {
             rb.velocity = new Vector2(0,0);
             if (Vector3.Distance(this.transform.position, initialPos) != 0.0f) {
                 this.transform.position = initialPos;

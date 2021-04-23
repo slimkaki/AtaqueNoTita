@@ -45,7 +45,8 @@ public class TitanController : MonoBehaviour {
     
     void FixedUpdate() {
         if(gm.gameState != GameManager.GameState.GAME) return;
-        if (canIWalk > 0.4f) { 
+        
+        if (canIWalk > 0.4f && gameObject.tag == "GenericTitan") { 
             TitanWalk();
         }
     }
