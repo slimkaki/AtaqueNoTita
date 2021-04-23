@@ -15,7 +15,7 @@ public class playerControler : MonoBehaviour
     Animator animator;
     public AudioClip shootSFX, swordSwoosh, mikasa_scream; 
     private bool canKillTitan = false;
-    public GameObject floatingDamage;
+    public GameObject floatingDamage, bloodObject;
     public float attackRate= 4f;
     float nextAttackTime = 0f;
     float lastGasReload = 0f;
@@ -188,6 +188,9 @@ public class playerControler : MonoBehaviour
                 nextAttackTime = Time.time + 1.0f / attackRate;
                 animator.SetTrigger("atk");
                 if (canKillTitan){
+                    for (int i = 0; i < 3; i++){
+                        Instantiate(bloodObject, transform.position, Quaternion.identity);
+                    }
                     audioManeger.PlaySFX(shootSFX);
                     SearchAndDestroy();
                     gm.pontos+=1;
@@ -271,10 +274,17 @@ public class playerControler : MonoBehaviour
             audioManeger.PlaySFX(mikasa_scream);
             gm.ChangeState(GameManager.GameState.ENDGAME);
         }
-        if (collision.gameObject.tag == "titanMouth")
+        if (collision.gameObject.tag == "titanMouth"){
+            for (int i = 0; i < 5; i++){
+                Instantiate(bloodObject, transform.position, Quaternion.identity);
+            }
             gm.vidas=0;
+        }
         if (collision.gameObject.tag == "TitanHand" && gm.titanAtk){
             Instantiate(floatingDamage, new Vector3(this.transform.position.x + 0.5f, this.transform.position.y+2f, this.transform.position.z), Quaternion.identity);
+            for (int i = 0; i < 3; i++){
+                Instantiate(bloodObject, transform.position, Quaternion.identity);
+            }
             gm.trapped = true;
             gm.vidas-=4;
             rb.velocity = new Vector2(-160, 16 );

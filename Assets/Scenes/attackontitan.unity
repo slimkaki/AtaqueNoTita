@@ -455,6 +455,8 @@ MonoBehaviour:
   mikasa_scream: {fileID: 8300000, guid: 06f73c65f1b5f41939bd59e595246046, type: 3}
   floatingDamage: {fileID: 3024263517864726722, guid: 54b651e5378c54e39aa3140cc483b6a3,
     type: 3}
+  bloodObject: {fileID: 3662745410461477960, guid: 0a7627f83a5f8403d9e0073123d1e096,
+    type: 3}
   attackRate: 4
 --- !u!61 &221407714
 BoxCollider2D:
