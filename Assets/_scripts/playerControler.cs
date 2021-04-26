@@ -211,7 +211,7 @@ public class playerControler : MonoBehaviour
             isGrounded = false;
         } 
 
-        if ((Time.time - lastGasReload >= 5f) && (Input.GetKey(KeyCode.R))) {
+        if ((Time.time - lastGasReload >= 5f) && (Input.GetKey(KeyCode.R)) && gm.tanque_de_gas >0) {
             gm.tanque_de_gas--;
             gm.gas = 100;
             lastGasReload = Time.time;
